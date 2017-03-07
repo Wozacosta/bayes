@@ -22,13 +22,13 @@ You can use this for categorizing any text content into any arbitrary set of **c
 ##Installing
 
 ```
-npm install bayes
+npm install bayes-probas
 ```
 
 ##Usage
 
 ```javascript
-var bayes = require('bayes')
+var bayes = require('bayes-probas')
 
 var classifier = bayes()
 
@@ -77,6 +77,19 @@ Teach your classifier what `category` the `text` belongs to. The more you teach 
 ###`classifier.categorize(text)`
 
 Returns the `category` it thinks `text` belongs to. Its judgement is based on what you have taught it with **.learn()**.
+And an array of the categories sorted from most pertinent to less pertinent.
+The returned object is as such :
+{
+    probas,    //--->     [
+                              {proba: logProbaCategoryA, probaH: humanReadableProbaCategoryA},
+                              {proba: logProbaCategoryB, probaH: humanReadableProbaCategoryB}...
+                          ]
+    chosenCategory  //--> the main category bayes thinks the text belongs to. As a string
+}
+
+probas[0].proba = logarithmic probability of the most pertinent category
+probas[0].probaH = more human readable mean of comparing categorizations
+                   where 0 is the less likely category and 100 the more likely category.
 
 ###`classifier.toJson()`
 
