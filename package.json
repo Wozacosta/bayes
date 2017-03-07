@@ -1,5 +1,5 @@
 {
-    "name": "bayes"
+    "name": "bayes-probas"
   , "description": "Naive Bayes Classifier for node.js"
   , "version": "0.0.6"
   , "author": "Tolga Tezel"
@@ -14,7 +14,7 @@
   , "main": "./lib/naive_bayes"
   , "repository": {
         "type": "git"
-      , "url": "http://github.com/ttezel/bayes.git"
+      , "url": "https://github.com/Wozacosta/bayes-probas.git"
     }
   , "scripts": {
       "test": "mocha -t 30000 -R spec"
