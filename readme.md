@@ -1,3 +1,11 @@
+#`bayes-probas` : Bayes classifier for node.js
+
+Forked from https://www.npmjs.com/package/bayes
+
+Improves upon it by returning more informations when categorizing.
+TODO: classifier.unlearn()
+
+
 #`bayes`: A Naive-Bayes classifier for node.js
 
 
