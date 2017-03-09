@@ -1,7 +1,7 @@
 {
     "name": "bayes-probas"
   , "description": "Naive Bayes Classifier for node.js"
-  , "version": "0.0.8"
+  , "version": "0.0.9"
   , "author": "Wozacosta"
   , "keywords": [ "naive", "bayes", "categorize", "classify", "classifier" ]
   , "dependencies": {
