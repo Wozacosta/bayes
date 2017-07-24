@@ -2,14 +2,17 @@
 
 Forked from https://www.npmjs.com/package/bayes
 
-Improves upon it by returning more informations when categorizing.
-TODO: classifier.unlearn()
+Improves upon it by returning more informations when categorizing, allows unlearning as well.
+
+Documentation so far is a bit sparse, but the code source is pretty readable.
+
 
 
 #`bayes`: A Naive-Bayes classifier for node.js
 
 
 `bayes` takes a document (piece of text), and tells you what category that document belongs to.
+
 
 ##What can I use this for?
 
@@ -19,7 +22,11 @@ You can use this for categorizing any text content into any arbitrary set of **c
 - is a news article about **technology**, **politics**, or **sports** ?
 - is a piece of text expressing **positive** emotions, or **negative** emotions?
 
+
+
 ##Installing
+
+You'll need node 5.0+
 
 ```
 npm install bayes-probas
@@ -28,9 +35,8 @@ npm install bayes-probas
 ##Usage
 
 ```javascript
-var bayes = require('bayes-probas')
-
-var classifier = bayes()
+const bayes = require('bayes-probas')
+const classifier = bayes()
 
 // teach it positive phrases
 
@@ -40,6 +46,10 @@ classifier.learn('Sweet, this is incredibly, amazing, perfect, great!!', 'positi
 // teach it a negative phrase
 
 classifier.learn('terrible, shitty thing. Damn. Sucks!!', 'negative')
+
+// unlearn something
+classifier.unlearn('this was a bad mistake', 'positive');
+
 
 // now ask it to categorize a document it has never seen before
 
@@ -72,12 +82,17 @@ var classifier = bayes({
 
 ###`classifier.learn(text, category)`
 
-Teach your classifier what `category` the `text` belongs to. The more you teach your classifier, the more reliable it becomes. It will use what it has learned to identify new documents that it hasn't seen before.
+Teach your classifier what `categor
+
+###`classifier.unlearn(text, category)`
+
+The classifier will unlearn the `text` that was associated with `category`.
 
 ###`classifier.categorize(text)`
 
 Returns the `category` it thinks `text` belongs to. Its judgement is based on what you have taught it with **.learn()**.
 And an array of the categories sorted from most pertinent to less pertinent.
+
 The returned object is as such :
 {
     probas,    //--->     [
@@ -95,9 +110,16 @@ probas[0].probaH = more human readable mean of comparing categorizations
 
 Returns the JSON representation of a classifier.
 
-###`var classifier = bayes.fromJson(jsonStr)`
+###`let classifier = bayes.fromJson(jsonStr)`
 
 Returns a classifier instance from the JSON representation. Use this with the JSON representation obtained from `classifier.toJson()`
+
+
+
+
+
+
+
 
 ## License
 

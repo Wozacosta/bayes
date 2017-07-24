@@ -1,7 +1,7 @@
 {
     "name": "bayes-probas"
   , "description": "Naive Bayes Classifier for node.js"
-  , "version": "0.1.0"
+  , "version": "0.2.0"
   , "author": "Wozacosta"
   , "keywords": [ "naive", "bayes", "categorize", "classify", "classifier" ]
   , "dependencies": {
@@ -10,7 +10,7 @@
   , "devDependencies": {
       "mocha": ">=0.8.1"
   }
-  , "engines": { "node": ">=0.8.0" }
+  , "engines": { "node": ">=5.0.0" }
   , "main": "./lib/naive_bayes"
   , "repository": {
         "type": "git"
