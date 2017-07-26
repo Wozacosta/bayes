@@ -1,12 +1,8 @@
 # `bayes-probas` : Bayes classifier for node.js
 
-Forked from https://www.npmjs.com/package/bayes and adds some functionnalities upon it (returning more informations when categorizing, unlearning)
-
-*Documentation so far is a bit sparse, but the code source is pretty readable.*
-
+Forked from https://www.npmjs.com/package/bayes, adds some functionnalities upon it (returning more informations when categorizing, unlearning)
 
 `bayes` takes a document (piece of text), and tells you what category that document belongs to.
-
 
 ## What can I use this for?
 
@@ -16,7 +12,6 @@ You can use this for categorizing any text content into any arbitrary set of **c
 - is a news article about **technology**, **politics**, or **sports** ?
 - is a piece of text expressing **positive** emotions, or **negative** emotions?
 
-
 ## Installing
 
 You'll need node 5.0+
@@ -25,7 +20,7 @@ You'll need node 5.0+
 npm install bayes-probas
 ```
 
-##Usage
+## Usage
 
 ```
 const bayes = require('bayes-probas')
@@ -42,7 +37,7 @@ classifier.learn('terrible, shitty thing. Damn. Sucks!!', 'negative')
 
 // unlearn something
 classifier.learn('i hate mornings', 'positive');
-...
+... // uh oh, inadvertently associated 'i hate mornings' as being 'positive'.
 classifier.unlearn('i hate mornings', 'positive');
 
 
@@ -52,11 +47,10 @@ classifier.categorize('awesome, cool, amazing!! Yay.')
 // => 'positive'
 
 // serialize the classifier's state as a JSON string.
-var stateJson = classifier.toJson()
+let stateJson = classifier.toJson()
 
 // load the classifier back from its JSON representation.
-var revivedClassifier = bayes.fromJson(stateJson)
-
+let revivedClassifier = bayes.fromJson(stateJson)
 ```
 
 ## API
@@ -69,8 +63,8 @@ Pass in an optional `options` object to configure the instance. If you specify a
 
 Eg.
 
-```js
-var classifier = bayes({
+```
+let classifier = bayes({
     tokenizer: function (text) { return text.split(' ') }
 })
 ```
@@ -109,17 +103,12 @@ Returns the JSON representation of a classifier.
 Returns a classifier instance from the JSON representation. Use this with the JSON representation obtained from `classifier.toJson()`
 
 
-
-
-
-
-
-
 ## License
 
 (The MIT License)
 
-Copyright (c) by Tolga Tezel <tolgatezel11@gmail.com>
+Original work Copyright (c) ttzel <tolgatezel11@gmail.com>
+Modified work Copyright (c) Wozacosta  <wozacosta@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
