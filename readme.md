@@ -1,20 +1,14 @@
-#`bayes-probas` : Bayes classifier for node.js
+# `bayes-probas` : Bayes classifier for node.js
 
-Forked from https://www.npmjs.com/package/bayes
+Forked from https://www.npmjs.com/package/bayes and adds some functionnalities upon it (returning more informations when categorizing, unlearning)
 
-Improves upon it by returning more informations when categorizing, allows unlearning as well.
-
-Documentation so far is a bit sparse, but the code source is pretty readable.
-
-
-
-#`bayes`: A Naive-Bayes classifier for node.js
+*Documentation so far is a bit sparse, but the code source is pretty readable.*
 
 
 `bayes` takes a document (piece of text), and tells you what category that document belongs to.
 
 
-##What can I use this for?
+## What can I use this for?
 
 You can use this for categorizing any text content into any arbitrary set of **categories**. For example:
 
@@ -23,8 +17,7 @@ You can use this for categorizing any text content into any arbitrary set of **c
 - is a piece of text expressing **positive** emotions, or **negative** emotions?
 
 
-
-##Installing
+## Installing
 
 You'll need node 5.0+
 
@@ -34,7 +27,7 @@ npm install bayes-probas
 
 ##Usage
 
-```javascript
+```
 const bayes = require('bayes-probas')
 const classifier = bayes()
 
@@ -48,7 +41,9 @@ classifier.learn('Sweet, this is incredibly, amazing, perfect, great!!', 'positi
 classifier.learn('terrible, shitty thing. Damn. Sucks!!', 'negative')
 
 // unlearn something
-classifier.unlearn('this was a bad mistake', 'positive');
+classifier.learn('i hate mornings', 'positive');
+...
+classifier.unlearn('i hate mornings', 'positive');
 
 
 // now ask it to categorize a document it has never seen before
@@ -64,9 +59,9 @@ var revivedClassifier = bayes.fromJson(stateJson)
 
 ```
 
-##API
+## API
 
-###`var classifier = bayes([options])`
+### `var classifier = bayes([options])`
 
 Returns an instance of a Naive-Bayes Classifier.
 
@@ -80,17 +75,17 @@ var classifier = bayes({
 })
 ```
 
-###`classifier.learn(text, category)`
+### `classifier.learn(text, category)`
 
-Teach your classifier what `categor
+Teach your classifier what `category` should be associated with an array `text` of words.
 
-###`classifier.unlearn(text, category)`
+### `classifier.unlearn(text, category)`
 
 The classifier will unlearn the `text` that was associated with `category`.
 
-###`classifier.categorize(text)`
+### `classifier.categorize(text)`
 
-Returns the `category` it thinks `text` belongs to. Its judgement is based on what you have taught it with **.learn()**.
+Returns the `category` it thinks `text` belongs to. Its judgement is based on what you have taught it with `classifier.learn()`.
 And an array of the categories sorted from most pertinent to less pertinent.
 
 The returned object is as such :
@@ -102,15 +97,14 @@ The returned object is as such :
     chosenCategory  //--> the main category bayes thinks the text belongs to. As a string
 }
 
-probas[0].proba = logarithmic probability of the most pertinent category
-probas[0].probaH = more human readable mean of comparing categorizations
-                   where 0 is the less likely category and 100 the more likely category.
+`probas[0].proba` = logarithmic probability of the most pertinent category
+`probas[0].probaH` = likelihood on a scale from 0 to 100, 0 and 100. With 0 being the least likely category and 100 being the most likely.
 
-###`classifier.toJson()`
+### `classifier.toJson()`
 
 Returns the JSON representation of a classifier.
 
-###`let classifier = bayes.fromJson(jsonStr)`
+### `let classifier = bayes.fromJson(jsonStr)`
 
 Returns a classifier instance from the JSON representation. Use this with the JSON representation obtained from `classifier.toJson()`
 
