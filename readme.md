@@ -82,6 +82,10 @@ The classifier will unlearn the `text` that was associated with `category`.
 Returns the `category` it thinks `text` belongs to. Its judgement is based on what you have taught it with `classifier.learn()`.
 And an array of the categories sorted from most pertinent to less pertinent.
 
+### `classifier.categorizeObj(text)`
+
+Returns an array of `categories` ordered by likelihood to the `text` parameter.
+
 The returned object is as such :
 {
     probas,    //--->     [
@@ -91,7 +95,7 @@ The returned object is as such :
     chosenCategory  //--> the main category bayes thinks the text belongs to. As a string
 }
 
-`probas[0].proba` = logarithmic probability of the most pertinent category
+`probas[0].proba` = logarithmic likelihood of the most pertinent category
 `probas[0].probaH` = likelihood on a scale from 0 to 100, 0 and 100. With 0 being the least likely category and 100 being the most likely.
 
 ### `classifier.toJson()`
