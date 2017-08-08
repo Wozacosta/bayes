@@ -1,4 +1,11 @@
-# `bayes-probas` : Bayes classifier for node.js
+# The project has now moved to [classificator](https://www.npmjs.com/package/classificator)
+
+If you depend on this package for now, feel free to issue a PR or leave an issue if there's anything you might need.
+The move was mainly to avoid conflict whilst renaming misnommers variables in the code.
+So far classificator also has a few more functionallity (removing a label properly). And Im trying out some better scoring mechanism.
+
+### `bayes-probas` : Bayes classifier for node.js
+
 
 Forked from https://www.npmjs.com/package/bayes, adds some functionnalities upon it (returning more informations when categorizing, unlearning)
 
